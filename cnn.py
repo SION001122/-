@@ -41,10 +41,10 @@ class CNNBlock(nn.Module):
         x = self.block(x)
         return x
 
-class deepCNN(nn.Module):
+class SimpleCnn(nn.Module):
     """3개의 CNN 블록을 쌓은 모델"""
     def __init__(self):
-        super(deepCNN, self).__init__()
+        super(SimpleCnn, self).__init__()
         self.block1 = CNNBlock(in_channels=1, out_channels=64)
         self.block2 = CNNBlock(in_channels=64, out_channels=128)
         self.block3 = CNNBlock(in_channels=128, out_channels=256)
@@ -81,7 +81,7 @@ class deepCNN(nn.Module):
                x = F.dropout(x, p=0.2 + torch.rand(1).item() * 0.1, training=self.training)  # 0.2 ~ 0.3 사이의 동적 드롭아웃
         return x
     
-model = deepCNN()
+model = SimpleCnn()
 
 
 #DataLoader와 
